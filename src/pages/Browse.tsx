@@ -28,7 +28,7 @@ const Browse = () => {
 							href="#"
 							className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
 							<img
-								src="//assets/images/icons/call.svg"
+								src="/assets/images/icons/call.svg"
 								className="w-6 h-6"
 								alt="icon"
 							/>
@@ -45,7 +45,7 @@ const Browse = () => {
 							className="relative flex flex-col w-full max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-10 gap-[30px] bg-white mt-[70px] ml-[calc((100%-1130px)/2)] z-10">
 							<div className="flex items-center w-fit rounded-full py-2 px-4 gap-[10px] bg-[#000929]">
 								<img
-									src="//assets/images/icons/crown-white.svg"
+									src="/assets/images/icons/crown-white.svg"
 									className="w-5 h-5"
 									alt="icon"
 								/>
@@ -109,10 +109,6 @@ const Browse = () => {
 							/>
 							<img
 								src="/assets/images/logos/Facebook 7.svg"
-								alt="clients logo"
-							/>
-							<img
-								src="/assets/images/logos/Microsoft 6.svg"
 								alt="clients logo"
 							/>
 						</div>
