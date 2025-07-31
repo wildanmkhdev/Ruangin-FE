@@ -3,6 +3,7 @@ import CityCard from "../components/CityCard";
 import { useEffect, useState } from "react";
 import type { City } from "../types/type";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const BrowseCityWrapper = () => {
 	// penjelasan kenapa pakai satat ekarena setcitie  bakal kita isi data dari api yg awalnya ciites adaldah array kosong
@@ -59,7 +60,10 @@ const BrowseCityWrapper = () => {
 								<SwiperSlide
 									key={city.id}
 									className=" !w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]">
+										<Link to={`/city/${city.slug}`}>
 									<CityCard city={city}></CityCard>
+									</Link>
+									{/* city yg sebelum sama dengan itu adlaah props atau properti yg dikirim dari city card nah ters city bagian ini {city} itu adlaah hasil di dalam mapping yg cities.map(city) */}
 								</SwiperSlide>
 							);
 						})}

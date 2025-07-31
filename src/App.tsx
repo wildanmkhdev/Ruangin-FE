@@ -15,7 +15,7 @@ const App = () => {
 				<Route
 					path="/office:slug/book"
 					element={<BookOffice></BookOffice>}></Route>
-				<Route path="/city:slug" element={<CityDetails></CityDetails>}></Route>
+				<Route path="/city/:slug" element={<CityDetails></CityDetails>}></Route>
 				<Route
 					path="/success-booking"
 					element={<SuccessBooking></SuccessBooking>}></Route>
