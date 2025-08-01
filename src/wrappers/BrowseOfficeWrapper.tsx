@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import OfficeCard from "../components/OfficeCard";
 import { Office } from "../types/type";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const BrowseOfficeWrapper = () => {
 	const [offices, setOffices] = useState<Office[]>([]);
@@ -25,7 +27,11 @@ const BrowseOfficeWrapper = () => {
 		fetchOffices();
 	}, []);
 	if (loading) {
-		return <p>loading.....</p>;
+		return (
+			<div className="d-flex justify-content-center">
+				<Loading></Loading>
+			</div>
+		);
 	}
 	if (error) {
 		return <p>errro loading data : {error}</p>;
@@ -41,7 +47,11 @@ const BrowseOfficeWrapper = () => {
 			</h2>
 			<div className="grid grid-cols-3 gap-[30px]">
 				{offices.map((office) => (
-					<OfficeCard key={office.id} office={office}></OfficeCard>
+					<Link key={office.id} to={`/office/${office.slug}`}>
+						<OfficeCard office={office}></OfficeCard>
+					</Link>
+
+					// aturan pertama key wajib taruh di parent mapping seperti di link
 				))}
 			</div>
 		</section>

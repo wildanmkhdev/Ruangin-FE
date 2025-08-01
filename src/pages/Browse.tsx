@@ -5,124 +5,15 @@ import OfficeCard from "../components/OfficeCard";
 import BrowseCityWrapper from "../wrappers/BrowseCityWrapper";
 import BrowseOfficeWrapper from "../wrappers/BrowseOfficeWrapper";
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 
 const Browse = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<>
 			<>
-				<nav className="bg-white fixed top-0 left-0 w-full z-[99999] shadow-md">
-					<div className="flex items-center justify-between max-w-[1130px] mx-auto py-[22px] px-4">
-						<a href="index.html">
-							<img
-								src="/assets/images/logos/logo.svg"
-								alt="logo"
-								className="h-8"
-							/>
-						</a>
-
-						{/* Desktop Menu */}
-						<ul className="hidden md:flex items-center gap-[50px]">
-							<li>
-								<a href="" className="hover:text-blue-600">
-									Browse
-								</a>
-							</li>
-							<li>
-								<a href="" className="hover:text-blue-600">
-									Popular
-								</a>
-							</li>
-							<li>
-								<a href="" className="hover:text-blue-600">
-									Categories
-								</a>
-							</li>
-							<li>
-								<a href="" className="hover:text-blue-600">
-									Events
-								</a>
-							</li>
-							<li>
-								<a
-									href="view-booking-details.html"
-									className="hover:text-blue-600">
-									My Booking
-								</a>
-							</li>
-						</ul>
-
-						{/* Contact Button */}
-						<a
-							href="#"
-							className="hidden md:flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
-							<img
-								src="/assets/images/icons/call.svg"
-								className="w-6 h-6"
-								alt="icon"
-							/>
-							<span className="font-semibold">Contact Us</span>
-						</a>
-
-						{/* Hamburger */}
-						<button
-							className="md:hidden flex flex-col gap-1"
-							onClick={() => setIsOpen(!isOpen)}
-							aria-label="Toggle Menu">
-							<span className="w-6 h-0.5 bg-black"></span>
-							<span className="w-6 h-0.5 bg-black"></span>
-							<span className="w-6 h-0.5 bg-black"></span>
-						</button>
-					</div>
-
-					{/* Mobile Menu */}
-					<div
-						className={`md:hidden transition-all duration-300 ease-in-out bg-white shadow-lg px-4 ${
-							isOpen ? "max-h-[500px] py-4" : "max-h-0 overflow-hidden"
-						}`}>
-						<ul className="flex flex-col gap-4">
-							<li>
-								<a href="" className="block text-black hover:text-blue-600">
-									Browse
-								</a>
-							</li>
-							<li>
-								<a href="" className="block text-black hover:text-blue-600">
-									Popular
-								</a>
-							</li>
-							<li>
-								<a href="" className="block text-black hover:text-blue-600">
-									Categories
-								</a>
-							</li>
-							<li>
-								<a href="" className="block text-black hover:text-blue-600">
-									Events
-								</a>
-							</li>
-							<li>
-								<a
-									href="view-booking-details.html"
-									className="block text-black hover:text-blue-600">
-									My Booking
-								</a>
-							</li>
-							<li>
-								<a
-									href="#"
-									className="flex items-center gap-2 border border-[#000929] py-2 px-4 rounded-full w-fit">
-									<img
-										src="/assets/images/icons/call.svg"
-										className="w-5 h-5"
-										alt="icon"
-									/>
-									<span className="font-semibold">Contact Us</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
+				<Navbar></Navbar>
+				
 				<header className="flex flex-col w-full">
 					{/* Hero Banner Section */}
 					<section

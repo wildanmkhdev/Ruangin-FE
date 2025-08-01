@@ -6,6 +6,7 @@ export interface Office {
 	duration: number;
 	name: string;
 	slug: string;
+	address: string;
 	city: City;
 	// kenapa type nya City ini ambil dari interface yg udh dibuat sebelmny dari city di bawah
 	thumbnail: string;

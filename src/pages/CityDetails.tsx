@@ -3,6 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import type { City } from "../types/type";
 import axios from "axios";
 import OfficeCard from "../components/OfficeCard";
+import Navbar from "../components/Navbar";
+import { CSpinner } from "@coreui/react";
+import Loading from "../components/Loading";
 
 const CityDetails = () => {
 	const baseURL = "http://127.0.0.1:8000/storage";
@@ -34,7 +37,9 @@ const CityDetails = () => {
 	}, [slug]);
 
 	if (loading) {
-		return <p>Loading...</p>;
+		return 	<div className="d-flex justify-content-center">
+				<Loading></Loading>
+					</div>
 	}
 
 	if (error) {
@@ -44,42 +49,7 @@ const CityDetails = () => {
 	return (
 		<>
 			<>
-				<nav className="bg-white">
-					<div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-						<a href="index.html">
-							<img src="/assets/images/logos/logo.svg" alt="logo" />
-						</a>
-						<ul className="flex items-center gap-[50px] w-fit">
-							<li>
-								<Link to={"/"}>
-									<a href="#">Browse</a>
-								</Link>
-							</li>
-							<li>
-								<a href="">Popular</a>
-							</li>
-							<li>
-								<a href="">Categories</a>
-							</li>
-							<li>
-								<a href="">Events</a>
-							</li>
-							<li>
-								<a href="view-booking-details.html">My Booking</a>
-							</li>
-						</ul>
-						<a
-							href="#"
-							className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
-							<img
-								src="//assets/images/icons/call.svg"
-								className="w-6 h-6"
-								alt="icon"
-							/>
-							<span className="font-semibold">Contact Us</span>
-						</a>
-					</div>
-				</nav>
+				<Navbar></Navbar>
 				<header className="flex flex-col w-full">
 					<section id="Hero-Banner" className="relative flex h-[434px]">
 						<div
@@ -98,7 +68,7 @@ const CityDetails = () => {
 							id="Hero-Image"
 							className="absolute right-0 w-[calc(100%-((100%-1130px)/2)-305px)] h-[434px] rounded-bl-[40px] overflow-hidden">
 							<img
-								src={`${baseURL}/${city.photo}`}
+								src={`${baseURL}/${city?.photo}`}
 								className="w-full h-full object-cover"
 								alt="hero background"
 							/>
@@ -113,7 +83,9 @@ const CityDetails = () => {
 					</h2>
 					<div className="grid grid-cols-3 gap-[30px]">
 						{city?.officeSpaces.map((office) => (
-							<OfficeCard key={office.id} office={office}></OfficeCard>
+							<Link key={office.id} to={`/office/${office.slug}`}>
+								<OfficeCard  office={office}></OfficeCard>
+							</Link>
 						))}
 					</div>
 				</section>
