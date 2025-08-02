@@ -13,7 +13,7 @@ const Browse = () => {
 		<>
 			<>
 				<Navbar></Navbar>
-				
+
 				<header className="flex flex-col w-full">
 					{/* Hero Banner Section */}
 					<section
