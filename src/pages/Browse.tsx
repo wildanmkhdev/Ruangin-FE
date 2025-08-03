@@ -15,233 +15,136 @@ const Browse = () => {
 				<Navbar></Navbar>
 
 				<header className="flex flex-col w-full">
-					{/* Hero Banner Section */}
 					<section
 						id="Hero-Banner"
-						className="relative flex flex-col md:flex-row h-auto md:h-[720px] -mb-[93px]">
+						className="relative flex flex-col lg:h-[720px] -mb-[93px]">
+						{/* Hero Image muncul di semua ukuran layar */}
+						<div
+							id="Hero-Image"
+							className="relative lg:absolute right-0 w-full lg:w-[calc(100%-((100%-1130px)/2)-305px)] h-[300px] sm:h-[400px] lg:h-[720px] rounded-bl-[30px] overflow-hidden">
+							<img
+								src="assets/images/backgrounds/banner.png"
+								className="w-full h-full object-cover"
+								alt="hero background"
+							/>
+						</div>
+
 						{/* Hero Text */}
 						<div
 							id="Hero-Text"
-							className="relative flex flex-col w-full md:max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-6 md:p-10 gap-6 md:gap-[30px] bg-white mt-6 md:mt-[70px] mx-auto md:ml-[calc((100%-1130px)/2)] z-10">
-							<div className="flex items-center w-fit rounded-full py-2 px-4 gap-2 md:gap-[10px] bg-[#000929]">
+							className="relative z-10 flex flex-col w-full max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-6 sm:p-8 lg:p-10 gap-6 bg-white mt-10 lg:mt-[70px] mx-auto lg:ml-[calc((100%-1130px)/2)]">
+							<div className="flex items-center justify-center lg:justify-start w-fit rounded-full py-2 px-4 gap-2 bg-[#000929]">
 								<img
-									src="/assets/images/icons/crown-white.svg"
+									src="assets/images/icons/crown-white.svg"
 									className="w-5 h-5"
 									alt="icon"
 								/>
-								<span className="font-semibold text-white text-sm md:text-base">
+								<span className="font-semibold text-white text-sm sm:text-base text-center lg:text-left">
 									We’ve won top productivity 500 fortunes
 								</span>
 							</div>
-							<h1 className="font-extrabold text-3xl md:text-[50px] leading-tight md:leading-[60px]">
+							<h1 className="font-extrabold text-3xl sm:text-4xl lg:text-[50px] leading-tight lg:leading-[60px] text-center lg:text-left">
 								All Great Offices.
 								<br />
 								Grow Your Business.
 							</h1>
-							<p className="text-base md:text-lg leading-relaxed text-[#000929]">
+							<p className="text-base sm:text-lg leading-7 sm:leading-8 text-[#000929] text-center lg:text-left">
 								Kantor yang tepat dapat memberikan impact pekerjaan menjadi
 								lebih baik dan sehat dalam tumbuhkan karir.
 							</p>
-							<div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-5">
+							<div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5">
 								<a
 									href="#"
-									className="flex items-center rounded-full p-4 gap-3 bg-[#0D903A]">
+									className="flex items-center justify-center rounded-full px-6 py-4 gap-3 bg-[#0D903A]">
 									<img
-										src="/assets/images/icons/slider-horizontal-white.svg"
-										className="w-6 h-6 md:w-[30px] md:h-[30px]"
+										src="assets/images/icons/slider-horizontal-white.svg"
+										className="w-[24px] h-[24px] sm:w-[30px] sm:h-[30px]"
 										alt="icon"
 									/>
-									<span className="font-bold text-base md:text-xl text-[#F7F7FD]">
+									<span className="font-bold text-base sm:text-xl leading-[30px] text-[#F7F7FD]">
 										Explore Now
 									</span>
 								</a>
 								<a
 									href="#"
-									className="flex items-center rounded-full border border-[#000929] p-4 gap-3 bg-white">
+									className="flex items-center justify-center rounded-full border border-[#000929] px-6 py-4 gap-3 bg-white">
 									<img
-										src="/assets/images/icons/video-octagon.svg"
-										className="w-6 h-6 md:w-[30px] md:h-[30px]"
+										src="assets/images/icons/video-octagon.svg"
+										className="w-[24px] h-[24px] sm:w-[30px] sm:h-[30px]"
 										alt="icon"
 									/>
-									<span className="font-semibold text-base md:text-xl">
+									<span className="font-semibold text-base sm:text-xl leading-[30px]">
 										Watch Story
 									</span>
 								</a>
 							</div>
 						</div>
-
-						{/* Hero Image */}
-						<div
-							id="Hero-Image"
-							className="relative md:absolute md:right-0 w-full md:w-[calc(100%-((100%-1130px)/2)-305px)] h-[300px] md:h-[720px] rounded-bl-[40px] overflow-hidden mt-6 md:mt-0">
-							<img
-								src="/assets/images/backgrounds/banner.png"
-								className="w-full h-full object-cover"
-								alt="hero background"
-							/>
-						</div>
 					</section>
 
-					{/* Logo & Stats Section */}
-					<div className="flex flex-col pt-[80px] md:pt-[150px] pb-10 px-6 sm:px-[60px] md:px-[120px] gap-10 bg-[#0D903A]">
-						<div className="logo-contianer flex items-center justify-center flex-wrap max-w-[1130px] h-auto gap-8 md:gap-[60px] mx-auto">
-							<img
-								src="/assets/images/logos/TESLA.svg"
-								alt="clients logo"
-								className="h-6 md:h-[38px]"
-							/>
-							<img
-								src="/assets/images/logos/Libra 2.svg"
-								alt="clients logo"
-								className="h-6 md:h-[38px]"
-							/>
-							<img
-								src="/assets/images/logos/Binance logo.svg"
-								alt="clients logo"
-								className="h-6 md:h-[38px]"
-							/>
-							<img
-								src="/assets/images/logos/Facebook 7.svg"
-								alt="clients logo"
-								className="h-6 md:h-[38px]"
-							/>
-						</div>
-
-						<div className="flex flex-wrap justify-center gap-6 md:gap-[50px]">
-							{[
-								{ title: "Comfortable Space", value: "580M+" },
-								{ title: "Startups Succeed", value: "98%" },
-								{ title: "Countries", value: "90+" },
-								{ title: "Supportive Events", value: "139M+" },
-							].map((stat, i) => (
-								<div
-									key={i}
-									className="flex flex-col gap-1 text-center w-1/2 sm:w-auto">
-									<p className="text-sm sm:text-xl text-[#F7F7FD]">
-										{stat.title}
-									</p>
-									<p className="font-bold text-2xl sm:text-[38px] text-white leading-tight">
-										{stat.value}
-									</p>
-								</div>
-							))}
-						</div>
-					</div>
+					{/* Logo dan Statistik */}
 				</header>
 
 				<BrowseCityWrapper></BrowseCityWrapper>
-				<section
-					id="Benefits"
-					className="flex items-center justify-center w-[1015px] mx-auto gap-[100px] mt-[100px]">
-					<h2 className="font-bold text-[32px] leading-[48px] text-nowrap">
-						We Might Good <br />
-						For Your Business
-					</h2>
-					<div className="grid grid-cols-2 gap-[30px]">
-						<div className="flex items-center gap-4">
-							<div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-								<img
-									src="/assets/images/icons/security-user.svg"
-									className="w-[34px] h-[34px]"
-									alt="icon"
-								/>
-							</div>
-							<div className="flex flex-col gap-[5px]">
-								<p className="font-bold text-lg leading-[27px]">
-									Privacy-First Design
-								</p>
-								<p className="text-sm leading-[24px]">
-									Lorem available without even higher tax that cost much
-								</p>
-							</div>
+				<div className="flex flex-col mt-10 pt-16 sm:pt-[150px] pb-10 px-6 sm:px-[60px] lg:px-[500px] gap-10 bg-[#0D903A]">
+					{/* Logo Container */}
+					<div className="logo-container grid grid-cols-2 sm:flex items-center justify-center flex-wrap max-w-screen-xl mx-auto gap-10 sm:gap-[60px]">
+						<img
+							src="assets/images/logos/TESLA.svg"
+							className="h-6 sm:h-8 mx-auto"
+							alt="clients logo"
+						/>
+						<img
+							src="assets/images/logos/Libra 2.svg"
+							className="h-6 sm:h-8 mx-auto"
+							alt="clients logo"
+						/>
+						<img
+							src="assets/images/logos/Binance logo.svg"
+							className="h-6 sm:h-8 mx-auto"
+							alt="clients logo"
+						/>
+						<img
+							src="assets/images/logos/Facebook 7.svg"
+							className="h-6 sm:h-8 mx-auto"
+							alt="clients logo"
+						/>
+					</div>
+
+					{/* Statistic Section */}
+					<div className="grid grid-cols-2 sm:flex justify-center items-center gap-6 sm:gap-[50px] text-center">
+						<div className="flex flex-col gap-[2px]">
+							<p className="text-base sm:text-xl text-[#F7F7FD]">
+								Comfortable Space
+							</p>
+							<p className="font-bold text-[32px] sm:text-[38px] leading-[50px] sm:leading-[57px] text-white">
+								580M+
+							</p>
 						</div>
-						<div className="flex items-center gap-4">
-							<div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-								<img
-									src="/assets/images/icons/group.svg"
-									className="w-[34px] h-[34px]"
-									alt="icon"
-								/>
-							</div>
-							<div className="flex flex-col gap-[5px]">
-								<p className="font-bold text-lg leading-[27px]">
-									Easy Move Access
-								</p>
-								<p className="text-sm leading-[24px]">
-									Lorem available without even higher tax that cost much
-								</p>
-							</div>
+						<div className="flex flex-col gap-[2px]">
+							<p className="text-base sm:text-xl text-[#F7F7FD]">
+								Startups Succeed
+							</p>
+							<p className="font-bold text-[32px] sm:text-[38px] leading-[50px] sm:leading-[57px] text-white">
+								98%
+							</p>
 						</div>
-						<div className="flex items-center gap-4">
-							<div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-								<img
-									src="/assets/images/icons/3dcube.svg"
-									className="w-[34px] h-[34px]"
-									alt="icon"
-								/>
-							</div>
-							<div className="flex flex-col gap-[5px]">
-								<p className="font-bold text-lg leading-[27px]">
-									Flexibility Spaces
-								</p>
-								<p className="text-sm leading-[24px]">
-									Lorem available without even higher tax that cost much
-								</p>
-							</div>
+						<div className="flex flex-col gap-[2px]">
+							<p className="text-base sm:text-xl text-[#F7F7FD]">Countries</p>
+							<p className="font-bold text-[32px] sm:text-[38px] leading-[50px] sm:leading-[57px] text-white">
+								90+
+							</p>
 						</div>
-						<div className="flex items-center gap-4">
-							<div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-								<img
-									src="/assets/images/icons/cup.svg"
-									className="w-[34px] h-[34px]"
-									alt="icon"
-								/>
-							</div>
-							<div className="flex flex-col gap-[5px]">
-								<p className="font-bold text-lg leading-[27px]">
-									Top-Rated Office
-								</p>
-								<p className="text-sm leading-[24px]">
-									Lorem available without even higher tax that cost much
-								</p>
-							</div>
-						</div>
-						<div className="flex items-center gap-4">
-							<div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-								<img
-									src="/assets/images/icons/coffee.svg"
-									className="w-[34px] h-[34px]"
-									alt="icon"
-								/>
-							</div>
-							<div className="flex flex-col gap-[5px]">
-								<p className="font-bold text-lg leading-[27px]">
-									Extra Snacks Available
-								</p>
-								<p className="text-sm leading-[24px]">
-									Lorem available without even higher tax that cost much
-								</p>
-							</div>
-						</div>
-						<div className="flex items-center gap-4">
-							<div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-								<img
-									src="/assets/images/icons/home-trend-up.svg"
-									className="w-[34px] h-[34px]"
-									alt="icon"
-								/>
-							</div>
-							<div className="flex flex-col gap-[5px]">
-								<p className="font-bold text-lg leading-[27px]">
-									Sustain for Business
-								</p>
-								<p className="text-sm leading-[24px]">
-									Lorem available without even higher tax that cost much
-								</p>
-							</div>
+						<div className="flex flex-col gap-[2px]">
+							<p className="text-base sm:text-xl text-[#F7F7FD]">
+								Supportive Events
+							</p>
+							<p className="font-bold text-[32px] sm:text-[38px] leading-[50px] sm:leading-[57px] text-white">
+								139M+
+							</p>
 						</div>
 					</div>
-				</section>
+				</div>
+
 				<BrowseOfficeWrapper></BrowseOfficeWrapper>
 
 				<FirstOfficeFooter></FirstOfficeFooter>
