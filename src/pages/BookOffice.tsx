@@ -5,6 +5,7 @@ import type { Office } from "../types/type";
 import { useEffect, useState, type ReactElement } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type z from "zod";
+import { bookingSchema } from "../types/validationBooking";
 
 const BookOffice = () => {
 	const { slug } = useParams<{ slug: string }>();
@@ -20,7 +21,7 @@ const BookOffice = () => {
 		office_space_id: "",
 		totalAmountWithUniqueCode: 0,
 	});
-	const [formError, setFormError] = useState<z.ZodIssue[]>([]);
+	const [formErrors, setFormErrors] = useState<z.ZodIssue[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [uniqueCode, setUniqueCode] = useState<number>(0);
 	const [totalAmountWithUniqueCode, setTotalAmountWithUniqueCode] =
@@ -38,14 +39,14 @@ const BookOffice = () => {
 				);
 				setOffice(response.data.data);
 				const officeSpaceId = response.data.data.id;
-				const generatedUniCode = Math.floor(100 + Math.random() * 900);
-				const grandTotal = response.data.data.price - generatedUniCode;
-				setUniqueCode(generatedUniCode);
+				const generatedUniqueCode = Math.floor(100 + Math.random() * 900);
+				const grandTotal = response.data.data.price - generatedUniqueCode;
+				setUniqueCode(generatedUniqueCode);
 				setTotalAmountWithUniqueCode(grandTotal);
 				setFormData((prevData) => ({
 					...prevData,
 					office_space_id: officeSpaceId,
-					total_amount: grandTotal,
+					totalAmountWithUniqueCode: grandTotal,
 				}));
 				setLoading(false);
 			} catch (err: any) {
@@ -76,7 +77,48 @@ const BookOffice = () => {
 			[e.target.name]: e.target.value,
 		});
 	};
-
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		console.log("validating form data.....");
+		const validation = bookingSchema.safeParse(formData);
+		if (!validation.success) {
+			console.error("validation error");
+			setFormErrors(validation.error.issues);
+			return;
+		}
+		console.log("form data is submiting", formData);
+		setIsLoading(true);
+		try {
+			const response = await axios.post(
+				"http://127.0.0.1:8000/api/booking-transaction",
+				{
+					...formData,
+				},
+				{
+					headers: {
+						"X-API-KEY": "apikeymedannnwkwkwwkkw",
+					},
+				}
+			);
+			console.log("form succes", response.data);
+			navigate("/success-booking", {
+				state: {
+					office,
+					booking: response.data,
+				},
+			});
+		} catch (error: unknown) {
+			if (axios.isAxiosError(error)) {
+				console.error("Error submitting form:", error.message);
+				setError(error.message);
+			} else {
+				console.error("Unexpected error:", error);
+				setError("An unexpected error occurred");
+			}
+		} finally {
+			setIsLoading(false);
+		}
+	};
 	return (
 		<>
 			<Navbar></Navbar>
@@ -88,19 +130,19 @@ const BookOffice = () => {
 				</h1>
 				<div className="absolute w-full h-full bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,#000000_91.83%)] z-10" />
 				<img
-					src="/assets/images/thumbnails/thumbnail-details-4.png"
+					src={`${baseURL}/${office?.thumbnail}`}
 					className="absolute w-full h-full object-cover object-top"
 					alt=""
 				/>
 			</div>
 			<form
-				action="booking-finished.html"
+				onSubmit={handleSubmit}
 				className="relative flex justify-center max-w-[1130px] mx-auto gap-[30px] mb-20 z-20">
 				<div className="flex flex-col shrink-0 w-[500px] h-fit rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
 					<div className="flex items-center gap-4">
 						<div className="flex shrink-0 w-[140px] h-[100px] rounded-[20px] overflow-hidden">
 							<img
-								src="/assets/images/thumbnails/thumbnail-details-4.png"
+								src={`${baseURL}/${office?.thumbnail}`}
 								className="w-full h-full object-cover"
 								alt="thumbnail"
 							/>
@@ -133,12 +175,15 @@ const BookOffice = () => {
 								<input
 									type="text"
 									name="name"
-                  onChange={handleChange}
+									onChange={handleChange}
 									value={formData.name}
 									id="name"
 									className="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]"
 									placeholder="Write your complete name"
 								/>
+								{formErrors.find((error) => error.path.includes("name")) && (
+									<p className="text-red-500">nama wajib di isi</p>
+								)}
 							</div>
 						</div>
 						<div className="flex flex-col gap-2">
@@ -154,12 +199,15 @@ const BookOffice = () => {
 								<input
 									type="tel"
 									name="phone_number"
-                  onChange={handleChange}
+									onChange={handleChange}
 									value={formData.phone_number}
 									id="phone_number"
 									className="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]"
 									placeholder="Write your valid number"
 								/>
+								{formErrors.find((error) =>
+									error.path.includes("phone_number")
+								) && <p className="text-red-500">phone number wajib di isi</p>}
 							</div>
 						</div>
 						<div className="flex flex-col gap-2">
@@ -175,11 +223,14 @@ const BookOffice = () => {
 								<input
 									type="date"
 									name="started_at"
-                  onChange={handleChange}
+									onChange={handleChange}
 									value={formData.started_at}
 									id="date"
 									className="relative appearance-none outline-none w-full py-3 font-semibold [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:opacity-0"
 								/>
+								{formErrors.find((error) =>
+									error.path.includes("started_at")
+								) && <p className="text-red-500">started_at wajib di isi</p>}
 							</div>
 						</div>
 					</div>
@@ -231,20 +282,27 @@ const BookOffice = () => {
 					<div className="flex flex-col gap-5">
 						<div className="flex items-center justify-between">
 							<p className="font-semibold">Duration</p>
-							<p className="font-bold">20 Days Working</p>
+							<p className="font-bold">{office?.duration} Days Working</p>
 						</div>
 						<div className="flex items-center justify-between">
 							<p className="font-semibold">Sub Total</p>
-							<p className="font-bold">Rp 250.000</p>
+							<p className="font-bold">
+								Rp {office?.price.toLocaleString("id")}
+							</p>
 						</div>
 						<div className="flex items-center justify-between">
 							<p className="font-semibold">Unique Code</p>
-							<p className="font-bold text-[#FF2D2D]">-Rp 340</p>
+							<p className="font-bold text-[#FF2D2D]">-Rp {uniqueCode}</p>
 						</div>
 						<div className="flex items-center justify-between">
 							<p className="font-semibold">Grand Total</p>
 							<p className="font-bold text-[22px] leading-[33px] text-[#0D903A]">
-								Rp 249.660
+								Rp{" "}
+								{totalAmountWithUniqueCode.toLocaleString("id", {
+									minimumFractionDigits: 0,
+									maximumFractionDigits: 0,
+									// supaya menghindari digit desimalyg berlebih
+								})}
 							</p>
 						</div>
 						<div className="relative rounded-xl p-[10px_20px] gap-[10px] bg-[#000929] text-white">
@@ -306,8 +364,9 @@ const BookOffice = () => {
 					<hr className="border-[#F6F5FD]" />
 					<button
 						type="submit"
+						disabled={isLoading}
 						className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]">
-						<span>I’ve Made The Payment</span>
+						<span>{isLoading ? "Loading" : "bayar"}</span>
 					</button>
 				</div>
 			</form>

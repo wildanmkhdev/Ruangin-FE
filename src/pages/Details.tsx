@@ -255,7 +255,7 @@ const Details = () => {
 						</div>
 						<hr className="border-[#F6F5FD]" />
 						<div className="flex flex-col gap-[14px]">
-							<Link to={`office/${office?.slug}/book`}>
+							<Link to={`/office/${office?.slug}/book`}>
 								<div className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]">
 									<img
 										src="/assets/images/icons/slider-horizontal-white.svg"
