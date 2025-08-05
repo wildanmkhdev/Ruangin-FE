@@ -19,13 +19,14 @@ const BookOffice = () => {
 		phone_number: "",
 		started_at: "",
 		office_space_id: "",
-		totalAmountWithUniqueCode: 0,
+		total_amount: 0,
 	});
 	const [formErrors, setFormErrors] = useState<z.ZodIssue[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [uniqueCode, setUniqueCode] = useState<number>(0);
 	const [totalAmountWithUniqueCode, setTotalAmountWithUniqueCode] =
 		useState<number>(0);
+	// ambil data office
 	useEffect(() => {
 		const fetchOffice = async () => {
 			try {
@@ -46,7 +47,7 @@ const BookOffice = () => {
 				setFormData((prevData) => ({
 					...prevData,
 					office_space_id: officeSpaceId,
-					totalAmountWithUniqueCode: grandTotal,
+					total_amount: grandTotal,
 				}));
 				setLoading(false);
 			} catch (err: any) {
@@ -71,12 +72,15 @@ const BookOffice = () => {
 		return <p>Error loading data: {error}</p>;
 	}
 	const baseURL = "http://127.0.0.1:8000/storage";
+
+	// function hanle perubahan data di form
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
 		});
 	};
+	// function handle kirim data
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		console.log("validating form data.....");
@@ -104,7 +108,7 @@ const BookOffice = () => {
 			navigate("/success-booking", {
 				state: {
 					office,
-					booking: response.data,
+					booking: response.data.data,
 				},
 			});
 		} catch (error: unknown) {
