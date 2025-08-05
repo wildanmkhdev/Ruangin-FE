@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type z from "zod";
 import type { BookingDetails } from "../types/type";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { viewBookingSchema } from "../types/validationBooking";
 
@@ -17,6 +17,7 @@ const CheckBooking = () => {
 	);
 	const [error, setError] = useState<string | null>(null);
 	const baseURL = "http://127.0.0.1:8000/storage/";
+	const Navigate = useNavigate();
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
