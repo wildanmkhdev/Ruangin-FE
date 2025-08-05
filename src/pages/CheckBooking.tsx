@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type z from "zod";
 import type { BookingDetails } from "../types/type";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { viewBookingSchema } from "../types/validationBooking";
 
@@ -17,11 +17,11 @@ const CheckBooking = () => {
 	);
 	const [error, setError] = useState<string | null>(null);
 	const baseURL = "http://127.0.0.1:8000/storage/";
-	const Navigate = useNavigate();
+	const navigate = useNavigate();
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
-			[e.target.name]: [e.target.value],
+			[e.target.name]: e.target.value,
 		});
 	};
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -47,8 +47,8 @@ const CheckBooking = () => {
 					},
 				}
 			);
-			console.log("form succes", response.data);
-			Navigate("/success-booking", {
+			console.log("form succes", response.data.data);
+			navigate("/success-booking", {
 				state: {
 					office,
 					booking: response.data.data,
@@ -110,7 +110,7 @@ const CheckBooking = () => {
 						</div>
 						{formErrors.find((error) =>
 							error.path.includes("booking_trx_id")
-						) && <p className="text-red-500">nama wajib di isi</p>}
+						) && <p className="text-red-500">booking transaksi wajib di isi</p>}
 					</div>
 					<div className="flex flex-col w-full gap-2">
 						<label htmlFor="phone" className="font-semibold">
@@ -134,7 +134,7 @@ const CheckBooking = () => {
 						</div>
 						{formErrors.find((error) =>
 							error.path.includes("phone_number")
-						) && <p className="text-red-500">nama wajib di isi</p>}
+						) && <p className="text-red-500">nomor telpen wajib di isi</p>}
 					</div>
 
 					<button

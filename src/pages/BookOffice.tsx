@@ -100,6 +100,7 @@ const BookOffice = () => {
 				},
 				{
 					headers: {
+						"Content-Type": "application/json",
 						"X-API-KEY": "apikeymedannnwkwkwwkkw",
 					},
 				}
