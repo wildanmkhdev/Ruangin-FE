@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type z from "zod";
 import type { BookingDetails } from "../types/type";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { viewBookingSchema } from "../types/validationBooking";
 
@@ -17,7 +16,6 @@ const CheckBooking = () => {
 	);
 	const [error, setError] = useState<string | null>(null);
 	const baseURL = "http://127.0.0.1:8000/storage/";
-	const navigate = useNavigate();
 
 	// Format date function
 	const formatDate = (dateString: string) => {
@@ -193,6 +191,7 @@ const CheckBooking = () => {
 				)}
 
 				{/* Loading State */}
+				{/* jika masih loading tampikan spinenr jika udah tam pilkan hasil */}
 				{isLoading && (
 					<div className="flex items-center justify-center py-8">
 						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0D903A]"></div>
