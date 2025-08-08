@@ -106,10 +106,13 @@ const BookOffice = () => {
 				}
 			);
 			console.log("form succes", response.data);
+			// jika dtaa berhasil di submit redirect halaman succes booking bserta state : yg berisi data office dan booking dari data api
 			navigate("/success-booking", {
 				state: {
 					office,
 					booking: response.data.data,
+					//data office adlaah dat office kita yg ambil dari get axios office:slug
+					//data booking adlaah hasil dari response dari be kita di bookingtransaction controller berupa json
 				},
 			});
 		} catch (error: unknown) {
@@ -213,6 +216,29 @@ const BookOffice = () => {
 								{formErrors.find((error) =>
 									error.path.includes("phone_number")
 								) && <p className="text-red-500">phone number wajib di isi</p>}
+							</div>
+						</div>
+						<div className="flex flex-col gap-2">
+							<label htmlFor="date" className="font-semibold">
+								Started At
+							</label>
+							<div className="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#0D903A] overflow-hidden">
+								<img
+									src="/assets/images/icons/calendar-black.svg"
+									className="w-6 h-6"
+									alt="icon"
+								/>
+								<input
+									type="date"
+									name="started_at"
+									onChange={handleChange}
+									value={formData.started_at}
+									id="date"
+									className="relative appearance-none outline-none w-full py-3 font-semibold [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:opacity-0"
+								/>
+								{formErrors.find((error) =>
+									error.path.includes("started_at")
+								) && <p className="text-red-500">started_at wajib di isi</p>}
 							</div>
 						</div>
 						<div className="flex flex-col gap-2">

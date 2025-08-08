@@ -5,6 +5,7 @@ import type { City } from "../types/type";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BrowseCityWrapper = () => {
 	// penjelasan kenapa pakai satat ekarena setcitie  bakal kita isi data dari api yg awalnya ciites adaldah array kosong
@@ -14,7 +15,7 @@ const BrowseCityWrapper = () => {
 	useEffect(() => {
 		const fetchCities = async () => {
 			try {
-				const response = await axios.get("http://127.0.0.1:8000/api/cities", {
+				const response = await axios.get(`${API_BASE_URL}/cities`, {
 					headers: {
 						"X-API-KEY": "apikeymedannnwkwkwwkkw",
 					},
@@ -33,7 +34,7 @@ const BrowseCityWrapper = () => {
 	if (loading) {
 		return (
 			<div className="d-flex justify-content-center">
-					<Loading></Loading>
+				<Loading></Loading>
 			</div>
 		);
 	}
