@@ -5,6 +5,7 @@ import type { Office } from "../types/type";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Details = () => {
 	const baseURL = "http://127.0.0.1:8000/storage";
@@ -16,14 +17,11 @@ const Details = () => {
 	useEffect(() => {
 		const fetchOffice = async () => {
 			try {
-				const response = await axios.get(
-					`http://127.0.0.1:8000/api/office/${slug}`,
-					{
-						headers: {
-							"X-API-KEY": "apikeymedannnwkwkwwkkw",
-						},
-					}
-				);
+				const response = await axios.get(`${API_BASE_URL}/office/${slug}`, {
+					headers: {
+						"X-API-KEY": "apikeymedannnwkwkwwkkw",
+					},
+				});
 				setOffice(response.data.data);
 			} catch (err: any) {
 				setError(err.message || "Terjadi kesalahan");

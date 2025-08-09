@@ -4,8 +4,8 @@ import type { City } from "../types/type";
 import axios from "axios";
 import OfficeCard from "../components/OfficeCard";
 import Navbar from "../components/Navbar";
-import { CSpinner } from "@coreui/react";
 import Loading from "../components/Loading";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CityDetails = () => {
 	const baseURL = "http://127.0.0.1:8000/storage";
@@ -17,14 +17,11 @@ const CityDetails = () => {
 	useEffect(() => {
 		const fetchCity = async () => {
 			try {
-				const response = await axios.get(
-					`http://127.0.0.1:8000/api/city/${slug}`,
-					{
-						headers: {
-							"X-API-KEY": "apikeymedannnwkwkwwkkw",
-						},
-					}
-				);
+				const response = await axios.get(`${API_BASE_URL}/city/${slug}`, {
+					headers: {
+						"X-API-KEY": "apikeymedannnwkwkwwkkw",
+					},
+				});
 				setCity(response.data.data);
 			} catch (err: any) {
 				setError(err.message || "Terjadi kesalahan");
@@ -37,9 +34,11 @@ const CityDetails = () => {
 	}, [slug]);
 
 	if (loading) {
-		return 	<div className="d-flex justify-content-center">
+		return (
+			<div className="d-flex justify-content-center">
 				<Loading></Loading>
-					</div>
+			</div>
+		);
 	}
 
 	if (error) {
@@ -84,7 +83,7 @@ const CityDetails = () => {
 					<div className="grid grid-cols-3 gap-[30px]">
 						{city?.officeSpaces.map((office) => (
 							<Link key={office.id} to={`/office/${office.slug}`}>
-								<OfficeCard  office={office}></OfficeCard>
+								<OfficeCard office={office}></OfficeCard>
 							</Link>
 						))}
 					</div>

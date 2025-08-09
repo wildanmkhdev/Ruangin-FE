@@ -43,9 +43,11 @@ const BrowseCityWrapper = () => {
 		return <p>Error loading data: {error}</p>;
 	}
 	return (
-		<section id="Cities" className="flex flex-col gap-[30px] mt-[100px]">
+		<section
+			id="Cities"
+			className="flex flex-col gap-[30px] mt-[100px] container mx-auto">
 			<div className="w-full max-w-[1130px] mx-auto flex items-center justify-between">
-				<h2 className="font-bold text-[32px] leading-[48px] text-nowrap">
+				<h2 className="font-bold text-[30px] leading-[48px] text-nowrap">
 					You Can Choose <br />
 					Our Favorite Cities
 				</h2>
@@ -60,7 +62,7 @@ const BrowseCityWrapper = () => {
 						spaceBetween={30}
 						slidesPerView="auto"
 						slidesOffsetAfter={30}
-						slidesOffsetBefore={30}>
+						slidesOffsetBefore={0}>
 						{cities.map((city) => {
 							return (
 								<SwiperSlide

@@ -6,6 +6,7 @@ import { useEffect, useState, type ReactElement } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type z from "zod";
 import { bookingSchema } from "../types/validationBooking";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BookOffice = () => {
 	const { slug } = useParams<{ slug: string }>();
@@ -30,14 +31,11 @@ const BookOffice = () => {
 	useEffect(() => {
 		const fetchOffice = async () => {
 			try {
-				const response = await axios.get(
-					`http://127.0.0.1:8000/api/office/${slug}`,
-					{
-						headers: {
-							"X-API-KEY": "apikeymedannnwkwkwwkkw",
-						},
-					}
-				);
+				const response = await axios.get(`${API_BASE_URL}/office/${slug}`, {
+					headers: {
+						"X-API-KEY": "apikeymedannnwkwkwwkkw",
+					},
+				});
 				setOffice(response.data.data);
 				const officeSpaceId = response.data.data.id;
 				const generatedUniqueCode = Math.floor(100 + Math.random() * 900);
@@ -241,31 +239,7 @@ const BookOffice = () => {
 								) && <p className="text-red-500">started_at wajib di isi</p>}
 							</div>
 						</div>
-						<div className="flex flex-col gap-2">
-							<label htmlFor="date" className="font-semibold">
-								Started At
-							</label>
-							<div className="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#0D903A] overflow-hidden">
-								<img
-									src="/assets/images/icons/calendar-black.svg"
-									className="w-6 h-6"
-									alt="icon"
-								/>
-								<input
-									type="date"
-									name="started_at"
-									onChange={handleChange}
-									value={formData.started_at}
-									id="date"
-									className="relative appearance-none outline-none w-full py-3 font-semibold [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:opacity-0"
-								/>
-								{formErrors.find((error) =>
-									error.path.includes("started_at")
-								) && <p className="text-red-500">started_at wajib di isi</p>}
-							</div>
-						</div>
 					</div>
-					<hr className="border-[#F6F5FD]" />
 					<div className="flex items-center gap-3">
 						<img
 							src="/assets/images/icons/shield-tick.svg"

@@ -3,6 +3,7 @@ import type z from "zod";
 import type { BookingDetails } from "../types/type";
 import axios from "axios";
 import { viewBookingSchema } from "../types/validationBooking";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CheckBooking = () => {
 	const [formData, setFormData] = useState({
@@ -61,7 +62,7 @@ const CheckBooking = () => {
 
 		try {
 			const response = await axios.post(
-				"http://127.0.0.1:8000/api/check-booking",
+				`${API_BASE_URL}/check-booking`,
 				{
 					...formData,
 				},
